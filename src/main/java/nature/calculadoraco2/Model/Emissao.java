@@ -2,7 +2,6 @@ package nature.calculadoraco2.Model;
 import jakarta.persistence.*;
 
 @Entity
-
 public class Emissao {
 
     @Id
@@ -10,18 +9,16 @@ public class Emissao {
     private Long id;
 
     @ManyToOne
-    private AtividadedoUsuario userActivity;
+    private AtividadedoUsuario atividadedoUsuario;
 
-    private double totalEmission;
-
-    // Construtores, getters e setters
+    private double totalEmissao;
 
     public Emissao() {
     }
 
-    public Emissao(AtividadedoUsuario userActivity, double totalEmission) {
-        this.userActivity = userActivity;
-        this.totalEmission = totalEmission;
+    public Emissao(AtividadedoUsuario atividadedoUsuario, double totalEmissao) {
+        this.atividadedoUsuario = atividadedoUsuario;
+        this.totalEmissao = totalEmissao;
     }
 
     public Long getId() {
@@ -32,19 +29,19 @@ public class Emissao {
         this.id = id;
     }
 
-    public AtividadedoUsuario getUserActivity() {
-        return userActivity;
+    public AtividadedoUsuario getAtividadedoUsuario() {
+        return atividadedoUsuario;
     }
 
-    public void setUserActivity(AtividadedoUsuario userActivity) {
-        this.userActivity = userActivity;
+    public void setAtividadedoUsuario(AtividadedoUsuario atividadedoUsuario) {
+        this.atividadedoUsuario = atividadedoUsuario;
     }
 
-    public double getTotalEmission() {
-        return totalEmission;
+    public double getTotalEmissao() {
+        return totalEmissao;
     }
 
-    public void setTotalEmission(double totalEmission) {
-        this.totalEmission = totalEmission;
+    public void setTotalEmissao(double totalEmissao) {
+        this.totalEmissao = totalEmissao;
     }
 }

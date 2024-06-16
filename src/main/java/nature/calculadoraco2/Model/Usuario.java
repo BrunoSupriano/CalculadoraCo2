@@ -3,7 +3,6 @@ import jakarta.persistence.*;
 
 
 @Entity
-
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,4 +38,11 @@ public class Usuario {
         this.email = email;
     }
 
+    public void setNome(String novoUsuario) {
+        this.name = novoUsuario;
+    }
+
+    public String getNome() {
+        return this.name;
+    }
 }
