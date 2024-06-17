@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AtividadedoUsuarioRepository extends JpaRepository<AtividadedoUsuario, Long> {
-    // Métodos adicionais se necessário
 }

@@ -24,6 +24,4 @@ public class UsuarioController {
         return usuarioService.createUsuario(usuario);
     }
 
-    // Outros métodos...
-
 }
