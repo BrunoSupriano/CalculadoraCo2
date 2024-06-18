@@ -9,4 +9,7 @@ public record UsuarioDto(
         @NotBlank(message = "O e-mail não pode estar em branco")
         String email
 ) {
+        public String getNome() {
+            return "";
+        }
 }

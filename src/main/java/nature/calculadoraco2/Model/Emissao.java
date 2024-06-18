@@ -1,6 +1,10 @@
 package nature.calculadoraco2.Model;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 @Entity
 public class Emissao {
 
@@ -16,32 +20,4 @@ public class Emissao {
     public Emissao() {
     }
 
-    public Emissao(AtividadedoUsuario atividadedoUsuario, double totalEmissao) {
-        this.atividadedoUsuario = atividadedoUsuario;
-        this.totalEmissao = totalEmissao;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public AtividadedoUsuario getAtividadedoUsuario() {
-        return atividadedoUsuario;
-    }
-
-    public void setAtividadedoUsuario(AtividadedoUsuario atividadedoUsuario) {
-        this.atividadedoUsuario = atividadedoUsuario;
-    }
-
-    public double getTotalEmissao() {
-        return totalEmissao;
-    }
-
-    public void setTotalEmissao(double totalEmissao) {
-        this.totalEmissao = totalEmissao;
-    }
 }

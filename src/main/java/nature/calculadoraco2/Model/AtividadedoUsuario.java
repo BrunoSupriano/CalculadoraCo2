@@ -1,6 +1,11 @@
 package nature.calculadoraco2.Model;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import nature.calculadoraco2.Dto.AtividadeDto;
 
+@Setter
+@Getter
 @Entity
 public class AtividadedoUsuario {
     @Id
@@ -15,11 +20,6 @@ public class AtividadedoUsuario {
 
     private double quantidade;
 
-    public AtividadedoUsuario() {
-    }
-
-    // Construtores, getters e setters
-
     public AtividadedoUsuario(Long id, Usuario usuario, Atividade atividade, double quantidade) {
         this.id = id;
         this.usuario = usuario;
@@ -27,43 +27,11 @@ public class AtividadedoUsuario {
         this.quantidade = quantidade;
     }
 
-    public Long getId() {
-        return id;
+    public AtividadedoUsuario(AtividadeDto createdActivity) {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public AtividadedoUsuario() {
+
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public Atividade getAtividade() {
-        return atividade;
-    }
-
-    public void setAtividade(Atividade atividade) {
-        this.atividade = atividade;
-    }
-
-    public double getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(double quantidade) {
-        this.quantidade = quantidade;
-    }
-
-    public Atividade getCorrectActivityMethod() {
-        return this.atividade;
-    }
-
-    public double getCorrectQuantityMethod() {
-        return this.quantidade;
-    }
 }

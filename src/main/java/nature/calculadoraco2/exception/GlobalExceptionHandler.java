@@ -15,8 +15,6 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public List<ApiExceptionDto> handleValidationErrors(MethodArgumentNotValidException exception) {
-        return exception.getBindingResult().getAllErrors().stream().map((exValidation) -> {
-            return new ApiExceptionDto("Erro de validação", exValidation.getDefaultMessage(), Instant.now());
-        }).toList();
+        return exception.getBindingResult().getAllErrors().stream().map((exValidation) -> new ApiExceptionDto("Erro de validação", exValidation.getDefaultMessage(), Instant.now())).toList();
     }
 }

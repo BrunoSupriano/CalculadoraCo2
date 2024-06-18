@@ -1,5 +1,4 @@
 package nature.calculadoraco2.Controller;
-
 import nature.calculadoraco2.Model.Emissao;
 import nature.calculadoraco2.Service.EmissaoService;
 import org.springframework.beans.factory.annotation.Autowired;

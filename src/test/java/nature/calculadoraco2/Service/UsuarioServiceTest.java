@@ -1,5 +1,6 @@
 package nature.calculadoraco2.Service;
 
+import nature.calculadoraco2.Dto.UsuarioDto;
 import nature.calculadoraco2.Model.Usuario;
 import nature.calculadoraco2.Repositories.UsuarioRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,7 +39,7 @@ class UsuarioServiceTest {
 
         when(usuarioRepository.findAll()).thenReturn(Arrays.asList(usuario1, usuario2));
 
-        List<Usuario> usuarios = usuarioService.getAllUsuarios();
+        List<UsuarioDto> usuarios = usuarioService.getAllUsuarios();
 
         assertEquals(2, usuarios.size());
         assertEquals("Usuario 1", usuarios.get(0).getNome());

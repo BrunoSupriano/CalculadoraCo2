@@ -6,21 +6,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmissaoService {
     public Emissao calculateEmission(Emissao emission) {
-        // implementation here
-        return null; // replace with actual implementation
+        return null;
     }
 
     public List<Emissao> getEmissionsByUser(Long userId) {
-        // implementation here
-        return null; // replace with actual implementation
+        return null;
     }
 
     public Emissao updateEmission(Long id, Emissao emission) {
-        // implementation here
-        return null; // replace with actual implementation
+        return null;
     }
 
     public void deleteEmission(Long id) {
-        // implementation here
     }
 }

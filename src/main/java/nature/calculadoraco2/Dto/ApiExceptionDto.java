@@ -7,4 +7,5 @@ public record ApiExceptionDto(
         String descricao,
         Instant data
 ) {
+
 }

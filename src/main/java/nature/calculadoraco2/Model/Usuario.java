@@ -1,7 +1,11 @@
 package nature.calculadoraco2.Model;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 
+@Setter
+@Getter
 @Entity
 public class Usuario {
     @Id
@@ -12,30 +16,6 @@ public class Usuario {
 
     public Usuario() {
 
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public void setNome(String novoUsuario) {

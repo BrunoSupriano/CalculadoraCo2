@@ -1,8 +1,11 @@
 package nature.calculadoraco2.Model;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 @Entity
-
 public class Atividade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -10,27 +13,7 @@ public class Atividade {
     private String name;
     private double emissionFactor;
 
-    public Long getId() {
-        return id;
+    public Atividade() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getEmissionFactor() {
-        return emissionFactor;
-    }
-
-    public void setEmissionFactor(double emissionFactor) {
-        this.emissionFactor = emissionFactor;
-    }
 }
