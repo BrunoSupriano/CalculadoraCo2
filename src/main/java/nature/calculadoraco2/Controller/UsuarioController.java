@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -18,19 +19,26 @@ public class UsuarioController {
     }
 
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public List<UsuarioDto> getAllUsuarios() {
         return usuarioService.getAllUsuarios();
     }
 
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public UsuarioDto getUsuarioById (@PathVariable Long id) {
+        return usuarioService.getUsuarioById(id);
+    }
+
     @PostMapping
-    public UsuarioDto createUsuario(@RequestBody UsuarioDto usuarioDto) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public UsuarioDto saveUsuario(@RequestBody UsuarioDto usuarioDto) {
         return usuarioService.saveUsuario(usuarioDto);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<UsuarioDto> updateUsuario(@PathVariable Long id, @RequestBody UsuarioDto usuarioDto) {
-        UsuarioDto updatedUsuario = usuarioService.updateUsuario(id, usuarioDto);
-        return new ResponseEntity<>(updatedUsuario, HttpStatus.OK);
+        return new ResponseEntity<>(usuarioService.updateUsuario(id, usuarioDto), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

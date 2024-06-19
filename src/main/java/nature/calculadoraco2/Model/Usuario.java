@@ -1,11 +1,15 @@
 package nature.calculadoraco2.Model;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Usuario {
     @Id
@@ -14,15 +18,4 @@ public class Usuario {
     private String name;
     private String email;
 
-    public Usuario() {
-
-    }
-
-    public void setNome(String novoUsuario) {
-        this.name = novoUsuario;
-    }
-
-    public String getNome() {
-        return this.name;
-    }
 }

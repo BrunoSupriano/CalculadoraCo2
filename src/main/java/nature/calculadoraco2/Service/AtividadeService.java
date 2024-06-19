@@ -2,10 +2,12 @@ package nature.calculadoraco2.Service;
 import nature.calculadoraco2.Dto.AtividadeDto;
 import nature.calculadoraco2.Mapper.AtividadeMapper;
 import nature.calculadoraco2.Model.Atividade;
+import nature.calculadoraco2.Model.Usuario;
 import nature.calculadoraco2.Repositories.AtividadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AtividadeService {
@@ -20,8 +22,10 @@ public class AtividadeService {
         return listaAtividades.stream().map(atividadeMapper::toDto).toList();
     }
 
-    public Atividade getAtividadeById(Integer id) {
-        return atividadeRepository.findById(id).orElse(null);
+    public AtividadeDto getAtividadeById(Long id) {
+        Optional<Atividade> atividade = atividadeRepository.findById(id);
+        if (atividade.isEmpty()) throw new RuntimeException("A atividade não existe");
+        return atividadeMapper.toDto(atividade.get());
     }
 
     public AtividadeDto saveAtividade(AtividadeDto atividadeDto) {
@@ -32,7 +36,7 @@ public class AtividadeService {
         return atividadeMapper.toDto(atividade);
     }
 
-    public AtividadeDto updateAtividade(Integer id, AtividadeDto atividadeDto) {
+    public AtividadeDto updateAtividade(Long id, AtividadeDto atividadeDto) {
         Atividade atividade = atividadeRepository.findById(id).get();
         atividade.setName(atividadeDto.name());
         atividade.setEmissionFactor(atividadeDto.emissionFactor());
@@ -40,7 +44,7 @@ public class AtividadeService {
         return atividadeMapper.toDto(atividade);
     }
 
-    public AtividadeDto deleteAtividade(Integer id) {
+    public AtividadeDto deleteAtividade(Long id) {
         Atividade atividade = atividadeRepository.findById(id).get();
         atividadeRepository.delete(atividade);
         return atividadeMapper.toDto(atividade);
