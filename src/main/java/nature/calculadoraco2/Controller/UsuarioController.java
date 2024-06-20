@@ -46,4 +46,8 @@ public class UsuarioController {
         usuarioService.deleteUsuario(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+
+
+
 }

@@ -1,5 +1,5 @@
 package nature.calculadoraco2.Controller;
-import nature.calculadoraco2.Model.Emissao;
+import nature.calculadoraco2.Model.CalculoEmissao;
 import nature.calculadoraco2.Service.EmissaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,11 +16,15 @@ public class EmissaoController {
     private EmissaoService emissaoService;
 
     @PostMapping("/calcular")
-    public ResponseEntity<Emissao> calcularEmissao(@RequestBody Emissao emission) {
+    public ResponseEntity<Emissao> totalEmissao(@RequestBody Emissao emission) {
         Emissao calculatedEmission = emissaoService.calculateEmission(emission);
         return new ResponseEntity<>(calculatedEmission, HttpStatus.CREATED);
+
+        //calculo totalEmissao
     }
 
+
+    //Usuario
     @GetMapping("/usuario/{userId}")
     public List<Emissao> listarEmissaoPorUsuario(@PathVariable Long userId) {
         return emissaoService.getEmissionsByUser(userId);

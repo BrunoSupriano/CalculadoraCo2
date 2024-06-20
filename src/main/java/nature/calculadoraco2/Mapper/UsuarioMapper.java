@@ -9,7 +9,7 @@ public class UsuarioMapper {
     public UsuarioDto toDto(Usuario usuario) {
         return new UsuarioDto(
                 usuario.getId(),
-                usuario.getNome(),
+                usuario.getName(),
                 usuario.getEmail()
         );
     }

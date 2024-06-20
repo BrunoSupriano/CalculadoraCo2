@@ -1,20 +1,17 @@
 package nature.calculadoraco2.Controller;
-
+import jakarta.validation.Valid;
 import nature.calculadoraco2.Dto.AtividadeDto;
-import nature.calculadoraco2.Dto.UsuarioDto;
-import nature.calculadoraco2.Model.Atividade;
-import nature.calculadoraco2.Model.AtividadedoUsuario;
 import nature.calculadoraco2.Service.AtividadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/atividades")
+@RequestMapping("{userid}/atividades")
+
+
 public class AtividadeController {
 
     @Autowired
@@ -25,23 +22,21 @@ public class AtividadeController {
     public List<AtividadeDto> getAllAtividades() {
             return atividadeService.getAllAtividades();
         }
-    }
+
 
     @PostMapping("/criar")
-    public ResponseEntity<AtividadedoUsuario> criarAtividade() {
-        AtividadedoUsuario atividadedoUsuario = new AtividadedoUsuario();
-        // Set the properties of atividadedoUsuario based on createdActivity
-        // ...
-        return new ResponseEntity<>(atividadedoUsuario, HttpStatus.CREATED);
+    @ResponseStatus(HttpStatus.OK)
+    public AtividadeDto saveAtividade(@RequestBody @Valid AtividadeDto atividadeDto) {
+        return atividadeService.saveAtividade(atividadeDto);
     }
 
     @GetMapping("/atividades/{id}")
-    public AtividadeDto getActivityById(@PathVariable Long id) {
+    public AtividadeDto getAtividadeById(@PathVariable Long id) {
         return atividadeService.getAtividadeById(id);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarAtividade(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteAtividade(@PathVariable Long id) {
         atividadeService.deleteAtividade(id);
         return ResponseEntity.noContent().build();
     }

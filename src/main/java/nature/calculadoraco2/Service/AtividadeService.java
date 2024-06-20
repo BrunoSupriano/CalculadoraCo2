@@ -30,16 +30,16 @@ public class AtividadeService {
 
     public AtividadeDto saveAtividade(AtividadeDto atividadeDto) {
         Atividade atividade = new Atividade();
-        atividade.setName(atividadeDto.name());
-        atividade.setEmissionFactor(atividadeDto.emissionFactor());
+        atividade.setNomeAtividade(atividadeDto.nomeAtividade());
+        atividade.setDescricao(atividadeDto.descricao());
         atividadeRepository.save(atividade);
         return atividadeMapper.toDto(atividade);
     }
 
     public AtividadeDto updateAtividade(Long id, AtividadeDto atividadeDto) {
         Atividade atividade = atividadeRepository.findById(id).get();
-        atividade.setName(atividadeDto.name());
-        atividade.setEmissionFactor(atividadeDto.emissionFactor());
+        atividade.setNomeAtividade(atividadeDto.nomeAtividade());
+        atividade.setDescricao(atividadeDto.descricao());
         atividadeRepository.save(atividade);
         return atividadeMapper.toDto(atividade);
     }

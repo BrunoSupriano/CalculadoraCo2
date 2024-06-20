@@ -30,7 +30,7 @@ public class UsuarioService {
 
     public UsuarioDto saveUsuario(UsuarioDto usuarioDto) {
         Usuario usuario = new Usuario();
-        usuario.setNome(usuarioDto.name());
+        usuario.setName(usuarioDto.name());
         usuario.setEmail(usuarioDto.email());
         usuarioRepository.save(usuario);
         return usuarioMapper.toDto(usuario);
@@ -38,7 +38,7 @@ public class UsuarioService {
 
     public UsuarioDto updateUsuario(Long id, UsuarioDto usuarioDto) {
         Usuario usuario = usuarioRepository.findById(id).get();
-        usuario.setNome(usuarioDto.name());
+        usuario.setName(usuarioDto.name());
         usuario.setEmail(usuarioDto.email());
         usuarioRepository.save(usuario);
         return usuarioMapper.toDto(usuario);
