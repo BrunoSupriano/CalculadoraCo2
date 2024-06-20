@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.xml.crypto.dsig.Manifest;
+
 @Setter
 @Getter
 
@@ -19,5 +21,5 @@ public class CalculoEmissao {
     private Long id;
     private String mes;
     private String totalEmissao;
-
+    private String totalEmissaoUsuario;
 }

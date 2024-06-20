@@ -1,11 +1,10 @@
 package nature.calculadoraco2.Controller;
-import nature.calculadoraco2.Model.CalculoEmissao;
 import nature.calculadoraco2.Service.EmissaoService;
+import nature.calculadoraco2.Model.Emissao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -19,8 +18,6 @@ public class EmissaoController {
     public ResponseEntity<Emissao> totalEmissao(@RequestBody Emissao emission) {
         Emissao calculatedEmission = emissaoService.calculateEmission(emission);
         return new ResponseEntity<>(calculatedEmission, HttpStatus.CREATED);
-
-        //calculo totalEmissao
     }
 
 

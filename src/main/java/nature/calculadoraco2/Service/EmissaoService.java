@@ -1,11 +1,11 @@
 package nature.calculadoraco2.Service;
-import nature.calculadoraco2.Model.Emissao;
+import nature.calculadoraco2.Model.CalculoEmissao;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EmissaoService {
-    public Emissao calculateEmission(Emissao emission) {
+    public Emissao calculateEmission(CalculoEmissao emission) {
         return null;
     }
 
@@ -13,7 +13,7 @@ public class EmissaoService {
         return null;
     }
 
-    public Emissao updateEmission(Long id, Emissao emission) {
+    public Emissao updateEmission(Long id, CalculoEmissao emission) {
         return null;
     }
 
