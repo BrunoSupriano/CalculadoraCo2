@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.Month;
+import java.time.Year;
+
 @Setter
 @Getter
 
@@ -13,14 +16,14 @@ import lombok.Setter;
 
 @Entity
 
-public class Atividade {
+public class Emissao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
-    private String descricao; //a implementar
-    private Double quantidadeCo2;
+    private Month mes;
+    private Year ano;
+    private double totalCo2;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
@@ -34,28 +37,28 @@ public class Atividade {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public Month getMes() {
+        return mes;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setMes(Month mes) {
+        this.mes = mes;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public Year getAno() {
+        return ano;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setAno(Year ano) {
+        this.ano = ano;
     }
 
-    public Double getQuantidadeCo2() {
-        return quantidadeCo2;
+    public double getTotalCo2() {
+        return totalCo2;
     }
 
-    public void setQuantidadeCo2(Double quantidadeCo2) {
-        this.quantidadeCo2 = quantidadeCo2;
+    public void setTotalCo2(double totalCo2) {
+        this.totalCo2 = totalCo2;
     }
 
     public Usuario getUsuario() {
@@ -64,8 +67,5 @@ public class Atividade {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-    }
-
-    public void setUsuarioId(Long aLong) {
     }
 }

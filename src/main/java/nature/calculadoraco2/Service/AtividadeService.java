@@ -2,7 +2,6 @@ package nature.calculadoraco2.Service;
 import nature.calculadoraco2.Dto.AtividadeDto;
 import nature.calculadoraco2.Mapper.AtividadeMapper;
 import nature.calculadoraco2.Model.Atividade;
-import nature.calculadoraco2.Model.Usuario;
 import nature.calculadoraco2.Repositories.AtividadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,16 +29,16 @@ public class AtividadeService {
 
     public AtividadeDto saveAtividade(AtividadeDto atividadeDto) {
         Atividade atividade = new Atividade();
-        atividade.setNomeAtividade(atividadeDto.nomeAtividade());
-        atividade.setDescricao(atividadeDto.descricao());
+        atividade.setNome(atividadeDto.nome());
         atividadeRepository.save(atividade);
         return atividadeMapper.toDto(atividade);
     }
 
+
+    // não usado, a implementar...
     public AtividadeDto updateAtividade(Long id, AtividadeDto atividadeDto) {
         Atividade atividade = atividadeRepository.findById(id).get();
-        atividade.setNomeAtividade(atividadeDto.nomeAtividade());
-        atividade.setDescricao(atividadeDto.descricao());
+        atividade.setNome(atividadeDto.nome());
         atividadeRepository.save(atividade);
         return atividadeMapper.toDto(atividade);
     }

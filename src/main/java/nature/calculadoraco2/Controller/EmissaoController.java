@@ -1,11 +1,12 @@
 package nature.calculadoraco2.Controller;
+import nature.calculadoraco2.Dto.EmissaoDto;
 import nature.calculadoraco2.Service.EmissaoService;
-import nature.calculadoraco2.Model.Emissao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.time.Month;
+import java.time.Year;
 
 @RestController
 @RequestMapping("/emissoes")
@@ -14,28 +15,14 @@ public class EmissaoController {
     @Autowired
     private EmissaoService emissaoService;
 
-    @PostMapping("/calcular")
-    public ResponseEntity<Emissao> totalEmissao(@RequestBody Emissao emission) {
-        Emissao calculatedEmission = emissaoService.calculateEmission(emission);
-        return new ResponseEntity<>(calculatedEmission, HttpStatus.CREATED);
+
+    @PostMapping
+    public EmissaoDto addEmissao(@RequestBody EmissaoDto dto) {
+        return emissaoService.saveEmissao(dto);
     }
 
-
-    //Usuario
-    @GetMapping("/usuario/{userId}")
-    public List<Emissao> listarEmissaoPorUsuario(@PathVariable Long userId) {
-        return emissaoService.getEmissionsByUser(userId);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Emissao> atualizarEmissao(@PathVariable Long id, @RequestBody Emissao emission) {
-        Emissao updatedEmission = emissaoService.updateEmission(id, emission);
-        return ResponseEntity.ok(updatedEmission);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarEmissao(@PathVariable Long id) {
-        emissaoService.deleteEmission(id);
-        return ResponseEntity.noContent().build();
+    @GetMapping("/total")
+    public double getTotalEmissions(@RequestParam Month mes, @RequestParam Year ano, @RequestParam Long usuarioId) {
+        return emissaoService.getTotalEmissionsByMonthAndUser(mes, ano, usuarioId);
     }
 }

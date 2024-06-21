@@ -6,10 +6,19 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UsuarioMapper {
+
+    public Usuario toEntity(UsuarioDto dto) {
+        Usuario usuario = new Usuario();
+        usuario.setId(dto.id());
+        usuario.setNome(dto.nome());
+        usuario.setEmail(dto.email());
+        return usuario;
+    }
+
     public UsuarioDto toDto(Usuario usuario) {
         return new UsuarioDto(
                 usuario.getId(),
-                usuario.getName(),
+                usuario.getNome(),
                 usuario.getEmail()
         );
     }

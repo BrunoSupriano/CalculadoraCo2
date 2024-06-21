@@ -1,15 +1,15 @@
 package nature.calculadoraco2.Controller;
-import jakarta.validation.Valid;
 import nature.calculadoraco2.Dto.AtividadeDto;
 import nature.calculadoraco2.Service.AtividadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping("{userid}/atividades")
+@RequestMapping("/atividade")
 
 
 public class AtividadeController {
@@ -24,21 +24,15 @@ public class AtividadeController {
         }
 
 
-    @PostMapping("/criar")
+    @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public AtividadeDto saveAtividade(@RequestBody @Valid AtividadeDto atividadeDto) {
-        return atividadeService.saveAtividade(atividadeDto);
+    public AtividadeDto addAtividade(@RequestBody AtividadeDto dto) {
+        return atividadeService.saveAtividade(dto);
     }
 
-    @GetMapping("/atividades/{id}")
-    public AtividadeDto getAtividadeById(@PathVariable Long id) {
-        return atividadeService.getAtividadeById(id);
+    @GetMapping("/usuario/{Id}")
+    public List<AtividadeDto> getAtividadeById(@PathVariable Long Id) {
+        return Collections.singletonList(atividadeService.getAtividadeById(Id));
+        // era return atividadeService.getAtividadeById(Id); mas o método getAtividadeById não retorna
     }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAtividade(@PathVariable Long id) {
-        atividadeService.deleteAtividade(id);
-        return ResponseEntity.noContent().build();
-    }
-
 }
