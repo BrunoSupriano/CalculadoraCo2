@@ -3,7 +3,6 @@ package nature.calculadoraco22.Controller;
 import nature.calculadoraco22.Dto.UserDto;
 import nature.calculadoraco22.Model.User;
 import nature.calculadoraco22.Service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -12,8 +11,11 @@ import java.util.Optional;
 @RequestMapping("/api/users")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping
     public User addUser(@RequestBody UserDto userDto) {

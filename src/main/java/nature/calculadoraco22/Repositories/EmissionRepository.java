@@ -7,7 +7,11 @@ import java.util.List;
 
 public interface EmissionRepository extends JpaRepository<Emission, Long> {
 
-    List<Emission> findByUserIdAndMonthAndYear(Long userId, int month, int year);
+    List<Emission> findByUserIdAndYearAndMonth(Long userId, int month, int year);
 
     List<Emission> findByUserIdAndYear(Long userId, int year);
+
+    List<Emission> findByUserId(Long userId);
+
+
 }

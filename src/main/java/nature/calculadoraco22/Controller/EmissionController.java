@@ -1,6 +1,8 @@
 package nature.calculadoraco22.Controller;
 
 import nature.calculadoraco22.Dto.EmissionDto;
+import nature.calculadoraco22.Dto.EmissionImpactDto;
+import nature.calculadoraco22.Dto.EmissionSummaryByYearDto;
 import nature.calculadoraco22.Model.Emission;
 import nature.calculadoraco22.Service.EmissionService;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/users/{userId}/emissions") // Rota base para todas as operações relacionadas a emissões de um usuário
+@RequestMapping("/api/users/{userId}/emissions")
 public class EmissionController {
 
     private final EmissionService emissionService;
@@ -18,6 +20,8 @@ public class EmissionController {
     public EmissionController(EmissionService emissionService) {
         this.emissionService = emissionService;
     }
+
+    // Post/Get controlado pelo usuario
 
     @PostMapping
     public Emission addEmission(@PathVariable Long userId, @RequestBody EmissionDto emissionDto) {
@@ -29,17 +33,26 @@ public class EmissionController {
         return emissionService.getEmissionsByUser(userId);
     }
 
-    @GetMapping("/total")
-    public double getTotalEmissionsByUser(@PathVariable Long userId) {
-        return emissionService.getTotalEmissionsByUser(userId);
+    // Gets para agrupar por ano e mes as emissoes
+
+    @GetMapping("/{year}")
+    public List<Emission> getEmissionsByUserIdAndYear(@PathVariable Long userId, @PathVariable int year) {
+        return emissionService.getEmissionsByUserIdAndYear(userId, year);
     }
 
-    @GetMapping("/{year}/{month}") // Corrigido para não repetir userId
+    @GetMapping("/{year}/{month}")
     public List<Emission> getEmissionsByUserIdAndMonthAndYear(@PathVariable Long userId, @PathVariable int year, @PathVariable int month) {
         return emissionService.getEmissionsByUserIdAndMonthAndYear(userId, year, month);
     }
 
-    @GetMapping("/total/{year}") // Corrigido para não repetir userId
+    // Sumário para mostrar o total de emissões por ano e mes organizado
+    @GetMapping("/summary")
+    public List<EmissionSummaryByYearDto> getTotalEmissionsByUser(@PathVariable Long userId) {
+        return emissionService.getTotalEmissionsByUser(userId);
+    }
+
+    // Total de CO2 por ano
+    @GetMapping("/total/{year}")
     public Map<String, Double> getTotalCO2ByUserIdAndYear(@PathVariable Long userId, @PathVariable int year) {
         double totalCO2 = emissionService.getTotalCO2ByUserIdAndYear(userId, year);
 
@@ -47,6 +60,12 @@ public class EmissionController {
         result.put("totalCO2", totalCO2);
 
         return result;
+    }
+
+    // Calcular impacto geral das emissoes do ussuario
+    @GetMapping("/impact")
+    public EmissionImpactDto getEmissionImpact(@PathVariable Long userId) {
+        return emissionService.calculateEmissionImpact(userId);
     }
 
 }
