@@ -1,10 +1,10 @@
-package nature.calculadoraco2;
+package nature.calculadoraco22;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CalculadoraCo2ApplicationTests {
+class Calculadoraco22ApplicationTests {
 
     @Test
     void contextLoads() {
