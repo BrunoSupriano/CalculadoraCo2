@@ -3,7 +3,6 @@ package nature.calculadoraco22.Service;
 import nature.calculadoraco22.Dto.EmissionDto;
 import nature.calculadoraco22.Dto.EmissionImpactDto;
 import nature.calculadoraco22.Dto.EmissionSummaryByYearDto;
-import nature.calculadoraco22.Dto.EmissionSummaryDto;
 import nature.calculadoraco22.Model.Emission;
 import nature.calculadoraco22.Model.User;
 import nature.calculadoraco22.Repositories.EmissionRepository;
@@ -57,8 +56,7 @@ public class EmissionService {
         return emissions.stream().mapToDouble(Emission::getCo2).sum();
     }
 
-    //Calculos de sumário de emissões
-
+    // Calculos de sumário de emissões
     public List<EmissionSummaryByYearDto> getTotalEmissionsByUser(Long userId) {
         List<Emission> emissions = emissionRepository.findByUserId(userId);
 
@@ -113,7 +111,7 @@ public class EmissionService {
         Map<Integer, Double> annualTotals = emissions.stream()
                 .collect(Collectors.groupingBy(Emission::getYear, Collectors.summingDouble(Emission::getCo2)));
 
-        double averageAnnualPrevision = annualTotals.values().stream().mapToDouble(total -> total * 12).average().orElse(0.0);
+        double averageAnnualPrevision = annualTotals.values().stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
         double tenYearPrevision = averageAnnualPrevision * 10;
         double co2InTonnes = tenYearPrevision / 1000;
 
@@ -127,22 +125,20 @@ public class EmissionService {
     }
 
     private String getMonthName(int month) {
-        switch (month) {
-            case 1: return "janeiro";
-            case 2: return "fevereiro";
-            case 3: return "março";
-            case 4: return "abril";
-            case 5: return "maio";
-            case 6: return "junho";
-            case 7: return "julho";
-            case 8: return "agosto";
-            case 9: return "setembro";
-            case 10: return "outubro";
-            case 11: return "novembro";
-            case 12: return "dezembro";
-            default: return "";
-        }
+        return switch (month) {
+            case 1 -> "janeiro";
+            case 2 -> "fevereiro";
+            case 3 -> "março";
+            case 4 -> "abril";
+            case 5 -> "maio";
+            case 6 -> "junho";
+            case 7 -> "julho";
+            case 8 -> "agosto";
+            case 9 -> "setembro";
+            case 10 -> "outubro";
+            case 11 -> "novembro";
+            case 12 -> "dezembro";
+            default -> "";
+        };
     }
-
-
 }
