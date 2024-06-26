@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "calculadoraco2-427614",
+  "private_key_id": "d40ab4dfb198efc59aac4e9b3773d4c5af248bf3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC1i0zjNNW4SqJv\nW8iBZmsGOfxbu850N55FpakGUGTmmUg1fDgnFTHasFq87JUfG3yjkoL8pPFQXgKo\ny9O9pG7kkUuB+Va6SrXV3nh/QWSZqwg5jSyG/YAtJfaOTbvRX1TxxA2HYcxtPWFp\nc7fOp2QGIpNqjB4pw7YysW2ETa+xNZNO1FONJQKj/Vdpkun/0FK1i9QmezJYYjG7\n9dt+/DG8njRw5IR//t1h4/Tnbdl4m1Nty9euQYD5PWT2K5kA50GtI71v5zP/hR+M\nlbj/P9XogMuZNkib1OeehW6kXOje6C+Uoka7GSywaEIrUaCF6fYn3u6cu2gGyReC\niGNUwNEVAgMBAAECggEADhE4eL2aFvDvk8XurDo5rk6Vc61CkuZRZQ+wYH0fyG+V\ntRFGT574kTvLmCqT5ohseMdMT5PfYA0c0yQSKPaCIkNw8KYXtpE99E/MEf5I85BZ\nb441JlOj2DvCFmZHGLL0o9Q/gR9OpiNUtkVhd4moekI5Ho8zciSIbHarqA4WAFrn\nAKLZo5S84I1dmT08PPwvlcrubOTZ2DFiT55tQh5qrRmVBBDukMVtkU8aZp/3yOZe\nN0ht8RmHSnPsvDPh1QnO5ZOYgVKmAzSyHxfn0ORDKMUlNrDoVbVrUTAVKjsO18Rg\nI3AYdqFEFEd9aDoA0Z/LLP053ds95fG0PpKvQe5ayQKBgQDz096tgv9Rm8mU+F8D\nK0gs4poT/SAAaMgPp99oGSCUz93v9sn+/BbmxG9AekNe2qn9+ul6vU/Ac+NuvjeK\nNaRh28OHITxKCqDEPeQScksg5CqaKw5Vb9vbow7me0VX3gcjfniE3Sx4knpubovk\nmXCwDsZX6fKp+W2SyPz1EoZO/QKBgQC+m3G/LEtZx/QiF4eitreujXByppauQpEy\nk0m81Pe3Av6YTZff55glQjDNmGMu8ar0P6WLGojz9CgbvkFPnTDn8JsZypU4YNyt\nfPHaiN5fV3lxn9ryGDyYqVxtJkus1tNDuX7rTlej3qJqVFztW6MWWDDBZHPWWoGo\nU4Qno7sB+QKBgQDir/39DydUtiPp7ihXh+voXxykrNcNyl0FwStBWushr0hFiwot\nmC2qisJsDb+I9n7I9HgRduQopxWxpgN46XpUyL62aT3mEI97I5dhVwVmJPs+rfz7\nja24O5bkzYKguHmmlDR0QjTQPE67UOeattU/udzJa2YChTVMHLShHIHl+QKBgGh1\n7n/UObOJpx1sAdTGCKKsN11OOTRlnQe3uui3Ws883+T+WWbHmRWKUg7LHkhi/8r+\neq5iq33vaG/T9B06y8vBjG81HFSamTanTDD1Y9Gishb4gdi+Oa982f+jxkOCNKRg\nK9Ovys4vPJnDhG49E4Myb/39HJL0ZSyoILxMujeZAoGBAMJ/TDU4A2I8PjPBKUcu\nzXkE2GLr40WmFzztLDgep0VcrAK+lzwevw6Uu+Jmv1ysmTMXqMUPC4WIM6Sd8PAY\nnFnTTUZvxrvMvFBGOEuwqNSuhBGVoXUxYDy2um/h9ltIF+5fgJjU69b8vSlbGdCg\nTylIQFGkznKpyu00I/imVwCQ\n-----END PRIVATE KEY-----\n",
+  "client_email": "calculadoraco2@calculadoraco2-427614.iam.gserviceaccount.com",
+  "client_id": "110788083766752204381",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/calculadoraco2%40calculadoraco2-427614.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
