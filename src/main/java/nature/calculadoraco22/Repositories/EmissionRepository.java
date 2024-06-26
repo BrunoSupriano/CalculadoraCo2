@@ -13,5 +13,7 @@ public interface EmissionRepository extends JpaRepository<Emission, Long> {
 
     List<Emission> findByUserId(Long userId);
 
+    Emission findByUserIdAndId(Long userId, Long id);
+
 
 }

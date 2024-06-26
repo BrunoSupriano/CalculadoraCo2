@@ -13,5 +13,4 @@ public interface TreePlantingRepository extends JpaRepository<TreePlanting, Long
 
     TreePlanting findByUserIdAndId(Long userId, Long id);
 
-    void deleteByUserIdAndId(Long userId, Long id);
 }

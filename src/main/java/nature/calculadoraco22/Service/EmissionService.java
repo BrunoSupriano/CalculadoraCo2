@@ -3,10 +3,16 @@ package nature.calculadoraco22.Service;
 import nature.calculadoraco22.Dto.EmissionDto;
 import nature.calculadoraco22.Dto.EmissionImpactDto;
 import nature.calculadoraco22.Dto.EmissionSummaryByYearDto;
+import nature.calculadoraco22.Mappers.EmissionMapper;
 import nature.calculadoraco22.Model.Emission;
 import nature.calculadoraco22.Model.User;
 import nature.calculadoraco22.Repositories.EmissionRepository;
 import nature.calculadoraco22.Repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -15,7 +21,11 @@ import java.util.stream.Collectors;
 @Service
 public class EmissionService {
 
+    @Autowired
     private final EmissionRepository emissionRepository;
+
+    @Autowired
+    EmissionMapper emissionMapper;
 
     private final UserRepository userRepository;
 
@@ -24,23 +34,27 @@ public class EmissionService {
         this.userRepository = userRepository;
     }
 
-    public Emission addEmission(Long userId, EmissionDto emissionDto) {
-        Emission emission = new Emission();
-        emission.setActivity(emissionDto.getActivity());
-        emission.setCo2(emissionDto.getCo2());
-        emission.setMonth(emissionDto.getMonth());
-        emission.setYear(emissionDto.getYear());
+    public EmissionDto addEmission(Long userId, EmissionDto emissionDto) {
+        Optional<User> optionalUser = userRepository.findById(userId);
+        if (optionalUser.isEmpty()) {
+            throw new RuntimeException("Usuário não encontrado");
+        }
 
-        User user = new User();
-        user.setId(userId);
-        emission.setUser(user);
+        User user = optionalUser.get();
+        Emission emission = emissionMapper.toEntity(emissionDto, user);
 
-        return emissionRepository.save(emission);
+        Emission savedEmission = emissionRepository.save(emission);
+        return emissionMapper.toDto(savedEmission);
     }
 
-    public List<Emission> getEmissionsByUser(Long userId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
-        return user.getEmissions();
+    public List<EmissionDto> getEmissionsByUser(Long userId, Integer pagina, Integer resultados, List<String> sortBy) {
+        List<Sort.Order> orderByList = sortBy.stream()
+                .map((field) -> new Sort.Order(Sort.Direction.ASC, field))
+                .collect(Collectors.toList());
+        Pageable pageConfig = PageRequest.of(pagina, resultados, Sort.by(orderByList));
+        Page<Emission> listaEmissao = emissionRepository.findAll(pageConfig);
+        List<EmissionDto> listaEmissaoDto = listaEmissao.stream().map(emissionMapper::toDto).toList();
+        return listaEmissaoDto;
     }
 
     public List<Emission> getEmissionsByUserIdAndYear(Long userId, int year) {
@@ -140,5 +154,14 @@ public class EmissionService {
             case 12 -> "dezembro";
             default -> "";
         };
+    }
+
+    public void deleteEmission(Long userId, Long id) {
+        Emission emission = emissionRepository.findByUserIdAndId(userId, id);
+        if (emission != null) {
+            emissionRepository.delete(emission);
+        } else {
+            throw new RuntimeException("Emissão não encontrada");
+        }
     }
 }

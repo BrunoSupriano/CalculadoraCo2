@@ -29,12 +29,15 @@ public class TreePlantingController {
     }
 
     @GetMapping
-    public ResponseEntity<List<TreePlanting>> getAllTreePlantings(@PathVariable Long userId) {
-        List<TreePlanting> treePlantings = treePlantingService.getAllTreePlantings(userId);
-        return new ResponseEntity<>(treePlantings, HttpStatus.OK);
+    public List<TreePlantingDto> getAllTreePlantings(
+            @PathVariable Long userId,
+            @RequestParam(defaultValue = "0") Integer pagina,
+            @RequestParam(defaultValue = "5") Integer resultados,
+            @RequestParam(defaultValue = "plantingDate") List<String> sortBy) {
+        return treePlantingService.getAllTreePlantings(userId, pagina, resultados, sortBy);
     }
 
-    @GetMapping("/{id}")
+        @GetMapping("/{id}")
     public ResponseEntity<TreePlanting> getTreePlantingById(
             @PathVariable Long userId,
             @PathVariable Long id) {

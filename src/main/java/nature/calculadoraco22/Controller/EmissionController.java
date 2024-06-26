@@ -5,6 +5,8 @@ import nature.calculadoraco22.Dto.EmissionImpactDto;
 import nature.calculadoraco22.Dto.EmissionSummaryByYearDto;
 import nature.calculadoraco22.Model.Emission;
 import nature.calculadoraco22.Service.EmissionService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -24,13 +26,18 @@ public class EmissionController {
     // Post/Get controlado pelo usuario
 
     @PostMapping
-    public Emission addEmission(@PathVariable Long userId, @RequestBody EmissionDto emissionDto) {
+    public EmissionDto addEmission(@PathVariable Long userId, @RequestBody EmissionDto emissionDto) {
         return emissionService.addEmission(userId, emissionDto);
     }
 
     @GetMapping
-    public List<Emission> getEmissionsByUser(@PathVariable Long userId) {
-        return emissionService.getEmissionsByUser(userId);
+    public List<EmissionDto> getEmissionsByUser(
+            @PathVariable Long userId,
+            @RequestParam(defaultValue = "0") Integer pagina,
+            @RequestParam(defaultValue = "5") Integer resultados,
+            @RequestParam(defaultValue = "month") List<String> sortBy) {
+
+        return emissionService.getEmissionsByUser(userId, pagina, resultados, sortBy);
     }
 
     // Gets para agrupar por ano e mes as emissoes
@@ -66,6 +73,14 @@ public class EmissionController {
     @GetMapping("/impact")
     public EmissionImpactDto getEmissionImpact(@PathVariable Long userId) {
         return emissionService.calculateEmissionImpact(userId);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteEmission(
+            @PathVariable Long userId,
+            @PathVariable Long id) {
+        emissionService.deleteEmission(userId, id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }
