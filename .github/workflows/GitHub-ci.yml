@@ -1,0 +1,25 @@
+# Definindo os estágios do pipeline
+stages:
+  - test
+  - build
+
+# Job para testes unitários
+testes-unitarios:
+  stage: test
+  image: maven:3.8.3-openjdk-17
+  script:
+    - mvn clean test
+
+# Job para empacotar a aplicação
+pacote-jar:
+  stage: build
+  image: maven:3.8.3-openjdk-17
+  script:
+    - mvn clean package -DskipTests
+  artifacts:
+    paths:
+      - ./target/*.jar
+    when: always
+    expire_in: 4 hrs
+  only:
+    - master
